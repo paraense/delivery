@@ -26,23 +26,20 @@ public class Teste {
 //        //endereço
 //        cliente.getEndereco().setLugradouro("Pass. Carpano");
 //        cliente.getEndereco().setBairro("Brasilia");
-
         try {
-            
+
             List<Cliente> clientes = new ArrayList<>();
             clientes = session.createCriteria(Cliente.class).list();
-            
+
             for (Cliente cliente1 : clientes) {
                 System.out.println(cliente1.getPessoa().getNome());
                 System.out.println(cliente1.getEndereco().getLugradouro());
             }
 
 //            Transaction t = session.getTransaction();
-
 //            t.begin();
 //            session.save(cliente);
 //            t.commit();
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {

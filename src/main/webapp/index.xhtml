@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/template.xhtml" >
+        <ui:define name="corpo">
+            <div class="container"  >
+                <h:form class="form-group">
+                    <h:commandLink value="Novo produto" action="formProduto" />
+                    <h:panelGrid columns="2">
+                        <h:inputText class="form-control"  value="#{produtoService.filtro}" style="width: 100%" /> <h:commandButton class="btn btn-info" value="Buscar" action="#{produtoService.buscarProduto()}" />       
+                    </h:panelGrid> 
+
+
+                    <h:dataTable  class="table" value="#{produtoService.produtos}"  var="p" >
+                        <h:column>
+                            <f:facet name="header">Código</f:facet>
+                                #{p.id}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Nome</f:facet>
+                                #{p.nome}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Descrição</f:facet>
+                                #{p.discricao}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Valor</f:facet>
+                                #{p.valor}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Ações</f:facet>
+                            <h:commandLink  action="#{produtoService.excluir(p)}"  value="Excluir" /> ||
+                            <h:commandLink  action="#{produtoService.capturaProduto(p)}"  value="Atualizar" />
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>    
+
+</html>
+

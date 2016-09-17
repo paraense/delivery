@@ -5,6 +5,7 @@
  */
 package service;
 
+import dao.GenericDAO;
 import entidade.Produto;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +24,14 @@ import util.HibernateUtil;
  */
 @ManagedBean
 @SessionScoped
-public class ProdutoService {
+public class ProdutoService extends GenericDAO<Produto> {
 
     private boolean atualiza = false;
 
     private String filtro;
 
     public ProdutoService() {
+        super.entidade = produto;
         listarProdutos();
     }
 
@@ -37,21 +39,10 @@ public class ProdutoService {
     private List<Produto> produtos = new ArrayList<>();
 
     public String salvaProduto() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        try {
-            Transaction t = session.getTransaction();
-
-            t.begin();
-            session.save(produto);
-            t.commit();
-            listarProdutos();
+        if (salvar()) {
             return "index";
-        } catch (Exception e) {
-
-        } finally {
-            session.close();
         }
-        return null;
+        return "erro";
     }
 
     public void listarProdutos() {
@@ -82,21 +73,11 @@ public class ProdutoService {
         }
     }
 
-    public String atualizar() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        try {
-            Transaction t = session.getTransaction();
-            t.begin();
-            session.update(produto);
-            t.commit();
-            produto = new Produto();
-            atualiza = false;
+    public String atualiza() {
+        if (atualizar()) {
             return "index";
-        } catch (Exception e) {
-        } finally {
-            session.close();
         }
-        return null;
+        return "erro";
     }
 
     public String capturaProduto(Produto p) {

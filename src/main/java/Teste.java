@@ -1,8 +1,12 @@
 
 import entidade.Cliente;
+import entidade.Pedido;
+import entidade.Produto;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import util.HibernateUtil;
 
 /*
@@ -17,35 +21,37 @@ import util.HibernateUtil;
 public class Teste {
 
     public static void main(String[] args) {
-        Cliente cliente = new Cliente();
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-//        cliente.getPessoa().setNome("John Gomes");
-//        cliente.getPessoa().setCpf("0008877777777");
-//        cliente.getPessoa().setTelefone("912345678");
-//        //endereço
-//        cliente.getEndereco().setLugradouro("Pass. Carpano");
-//        cliente.getEndereco().setBairro("Brasilia");
-        try {
-
-            List<Cliente> clientes = new ArrayList<>();
-            clientes = session.createCriteria(Cliente.class).list();
-
-            for (Cliente cliente1 : clientes) {
-                System.out.println(cliente1.getPessoa().getNome());
-                System.out.println(cliente1.getEndereco().getLugradouro());
+        int maior = 0;
+        int[] numeros = {8, 6, 1, 1, 2};
+        for (int n : numeros) {
+            if (n > maior) {
+                maior = n;
             }
-
-//            Transaction t = session.getTransaction();
-//            t.begin();
-//            session.save(cliente);
-//            t.commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            session.close();
         }
+        
+        System.out.println("Maior: "+ maior);
+        int menor = 0;
+        int posicao = -1;
+        int ultimo = 0;
+        int qtd = 0;
 
+        for (int i = 0; i < numeros.length; i++) {
+            menor = maior;
+            for (int j = 0; j < numeros.length; j++) {
+          
+                if (numeros[j] < menor && posicao != j) {
+                    menor = numeros[j];
+                    posicao = j;
+                }
+                qtd++;
+                if (ultimo != menor && ultimo != 0 || menor == maior) {
+                    qtd++;
+                    ultimo = menor;
+                }
+            }
+            System.out.println("Nota: " + menor);
+            System.out.println("Quantidade de doces: " + qtd);
+
+        }
     }
-
 }

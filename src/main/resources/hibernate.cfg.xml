@@ -12,5 +12,7 @@
     <mapping class="entidade.Cliente"/>
     <mapping class="entidade.Pessoa"/>
     <mapping class="entidade.Endereco"/>
+        <mapping class="entidade.Pedido"/>
+
   </session-factory>
 </hibernate-configuration>

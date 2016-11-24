@@ -5,7 +5,7 @@
 
     
     <artifactId>br.com.delivery</artifactId>  
-    <groupId>pizzaria</groupId>
+    <groupId>delivery</groupId>
     <modelVersion>4.0.0</modelVersion>
     <version>1.0.0</version>
     <packaging>war</packaging>

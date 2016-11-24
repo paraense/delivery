@@ -5,11 +5,9 @@
  */
 package dao;
 
-import entidade.Produto;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 import util.HibernateUtil;
 
 /**

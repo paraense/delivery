@@ -5,18 +5,11 @@
  */
 package entidade;
 
-import dao.GenericDAO;
-import javax.faces.bean.ManagedBean;
-
 /**
  *
- * @author john
+ * @author johngomes
  */
-@ManagedBean
-
-public class PedidoService extends GenericDAO<Pedido>{
-
-    
-    
+public enum StatusPedido {
+    ABERTO, EM_CONFECCAO, EM_TRANSITO, ENTREGUE, CANCELADO;
     
 }

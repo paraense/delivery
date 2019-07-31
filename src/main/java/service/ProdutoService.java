@@ -115,5 +115,18 @@ public class ProdutoService extends GenericDAO<Produto> {
     public void setFiltro(String filtro) {
         this.filtro = filtro;
     }
+    
+    public boolean sonarTest() {
+      // teste sonar
+        
+      if(true){
+       return true;
+      } else {
+        return false;
+      
+      }
+       
+    }
+    
 
 }
